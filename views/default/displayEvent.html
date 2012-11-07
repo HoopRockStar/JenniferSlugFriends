@@ -1,0 +1,12 @@
+{{extend 'layout.html'}}
+<h3>{{=event.title}}</h3>
+<p>When: {{=event.date.strftime("%A, %B %d")}} at {{=event.time.strftime("%r")}}</p>
+<p>Location: {{=event.location}}</p>
+<p>{{=event.description}}</p>
+<B>Comments about {{=event.title}}</B>
+{{for c in c:}}
+<ol><li> {{=c.comment}}</li></ol>
+{{pass}}
+{{for mem in mem:}}
+<ol><li>mem.username</li></ol>
+{{pass}}

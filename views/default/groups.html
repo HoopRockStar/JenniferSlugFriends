@@ -1,0 +1,17 @@
+{{left_sidebar_enabled,right_sidebar_enabled=False,('message' in globals())}}
+{{extend 'layout.html'}}
+
+<h3>{{=group.name}}</h3>
+<p><br /> <img width="200px" src="{{=URL('download', args=group.photo)}}"/> <B>About us:</B> {{=group.description}}</p>
+
+<p> <B>Upcoming Events:</B> </p>
+<ol>
+{{for event in event:}}
+    <li>{{=A(event.title, _href=URL('displayEvent', args=[event.id]))}}
+    on {{=event.date.strftime("%A, %B %d")}}
+</li>
+{{pass}}
+</ol>
+
+
+<p>{{=A('Home', _href=URL('index'))}}</p>

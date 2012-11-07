@@ -1,0 +1,12 @@
+{{extend 'layout.html'}}
+
+<h2>Groups</h2>
+<ul>
+{{for group in groups:}}
+<li>{{=A(group.name, _href=URL('groups', args=[group.id]))}}
+    Description: ${{=group.description}}
+</li>
+{{pass}}
+</ul>
+
+<p>{{=A('Home', _href=URL('index'))}}</p>

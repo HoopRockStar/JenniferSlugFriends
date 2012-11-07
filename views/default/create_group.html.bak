@@ -1,0 +1,5 @@
+{{extend 'layout.html'}}
+<h2>Create A Group</h2>
+{{=form}}
+
+<p>{{=A('Home', _href=URL('index'))}}</p>
