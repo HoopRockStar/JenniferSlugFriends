@@ -14,9 +14,10 @@ def index():
 def groups():
     db(db.Groups.id==db.Groups(request.args[0]))
     group = db.Groups(request.args[0]) or redirect(URL('index'))
-    #administrator = db(auth_user.id==db.Group_Members.administrator).select()
+    #mem = db(db.auth_user.id==db.Comments.member).select(db.auth_user.username)
+    admin = db(db.Group_Members.member==db.auth_user.id).select(db.Group_Members.administrator)
     event = db(db.Events.group_id==group.id).select()
-    return dict(group=group, event=event)
+    return dict(group=group, event=event, admin=admin)
  
 #@auth.requires_login() 
 def createAGroup():
@@ -38,9 +39,7 @@ def displayEvent():
     db(db.Events.id==db.Events(request.args[0]))
     event = db.Events(request.args[0]) or redirect(URL('index'))
     c = db(db.Comments.event==event.id).select()
-    #member = db(c.member==auth.user.username).select()
-    #return dict(event=event, c=c, member=auth.user)
-    mem=db(auth.user_id==db.Comments.member).select()
+    mem = db(db.auth_user.id==db.Comments.member).select(db.auth_user.username)
     return dict(event=event, c=c, mem=mem)
 
 @auth.requires_login()
