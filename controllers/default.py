@@ -11,6 +11,21 @@
 def index():
   return dict(form=auth())
 
+@auth.requires_login()
+def home():
+  groups = db((db.Groups.id == db.Group_Members.group_id) \
+      & (auth.user_id == db.Group_Members.member)).select()
+  return dict(groups=groups, current_user=auth.user)
+
+@auth.requires_login()
+def profile():
+  groups = db((db.Groups.id == db.Group_Members.group_id) \
+      & (db.Group_Members.member == request.args[0])).select()
+  profile_user = db(db.auth_user.id == request.args[0]).select().first()
+  interests = db((db.Keywords.id == db.User_Interests.interest) \
+      & (db.User_Interests.user == request.args[0])).select()
+  return dict(groups=groups, profile_user=profile_user, interests=interests) 
+
 @auth.requires_login()  
 def groups():
     db(db.Groups.id==db.Groups(request.args[0]))
