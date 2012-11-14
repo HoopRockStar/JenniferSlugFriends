@@ -23,7 +23,7 @@ def profile():
       & (db.Group_Members.member == request.args[0])).select()
   profile_user = db(db.auth_user.id == request.args[0]).select().first()
   interests = db((db.Keywords.id == db.User_Interests.interest) \
-      & (db.User_Interests.user_id == request.args[0])).select()
+      & (db.User_Interests.user == request.args[0])).select()
   return dict(groups=groups, profile_user=profile_user, interests=interests) 
 
 @auth.requires_login()  
