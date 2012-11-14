@@ -1,12 +1,27 @@
 {{extend 'layout.html'}}
-<h3>{{=event.title}}</h3>
+
+<h3>{{=event.title}}</h3> 
+
+<table>
+    <tr>
+    <td>{{=A('Home', _href=URL('index'))}}</td>
+    <td>{{=A('My Profile', _href=URL('index'))}}</td>
+    <td>{{=A('Group Page', _href=URL('groups', args=[session.group_id]))}}</td>
+        {{if not attending:}}    
+    <td>{{=A('RSVP for this Event!', _href=URL('RSVP'))}}</td>
+        {{else:}}
+    <td>{{=A('Un-RSVP for this Event', _href=URL('unRSVP'))}}
+        {{pass}}
+    </tr>
+</table>
+
+{{if attending:}}
+<p color="red">You are registered for this event!</p>
+{{pass}}
 <p>When: {{=event.date.strftime("%A, %B %d")}} at {{=event.time.strftime("%r")}}</p>
 <p>Location: {{=event.location}}</p>
 <p>{{=event.description}}</p>
 <B>Comments about {{=event.title}}</B>
-{{for c in c:}}
-<ol><li> {{=c.comment}}</li></ol>
-{{pass}}
-{{for mem in mem:}}
-<ol><li>mem.username</li></ol>
+{{for c, mem in zip(c, mem):}}
+<ol><li><img width="50px" src="=mem.photo"/>{{=mem.username}}: {{=c.comment}}</li></ol>
 {{pass}}

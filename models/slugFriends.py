@@ -16,27 +16,30 @@ db.define_table('Groups',
     Field('description', 'text'),
     )
 
+db.define_table('Group_Members',
+    Field('group_id', db.Groups),
+    Field('member', db.auth_user, default=auth.user_id),
+    Field('administrator', 'boolean', default='False'),
+    Field('rating', 'integer'),
+    )
+
 db.define_table('Events',
+    Field('photo', 'upload'),
     Field('title', 'string'),
     Field('date', 'date'),
     Field('time', 'time'),
     Field('location', 'string'),
+    Field('address','string'),
+    Field('city','string'),
+    Field('zipcode', 'integer'),
     Field('group_id', db.Groups),
     Field('description', 'text'),
     )
-
-db.define_table('Group_Members',
-    Field('group_id', db.Groups),
-    Field('member', db.auth_user, default=auth.user_id),
-    Field('administrator', 'boolean'),
-    Field('rating', 'integer'),
-    )
-   
-           
+               
 db.define_table('Attendees',
     Field('event', db.Events),
-    Field('attendee', db.Group_Members),
-    Field('administrator', 'boolean'),
+    Field('attendee', db.auth_user, default=auth.user_id),
+    Field('administrator', 'boolean', default='False'),
     )
    
 db.define_table('Comments',
