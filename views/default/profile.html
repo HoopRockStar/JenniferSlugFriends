@@ -1,0 +1,38 @@
+{{extend 'layout.html'}}
+<style>
+    a{
+        color: #FFA812;
+    }
+    a:hover{
+        color: #FDF5E6;
+    }
+    
+    a:visited{
+        color: #FFCC11;
+    }
+</style>
+<html>
+    <Title> Slugfriends </Title>
+    <div id="top">
+        <br/>       
+    </div>
+    <h3> {{=profile_user.first_name}} {{=profile_user.last_name}}s Profile</h3>
+    <div id="left">   
+    <h4>About Me: </h4>
+<p>{{=profile_user.description}}</p>
+
+<b>
+Your Interests:
+<ul>
+{{for row in interests:}}
+   <li> {{=row.Keywords.keyword}} </li>
+{{pass}}
+</ul>
+</b>
+
+<h4>Your Groups</h4>
+{{for row in groups:}}
+    {{=row.Groups.name}}<br />
+{{pass}}
+</div>
+</html>
