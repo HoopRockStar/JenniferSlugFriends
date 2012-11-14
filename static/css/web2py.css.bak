@@ -1,18 +1,8 @@
 /** these MUST stay **/
 body { margin: 0; padding:0; border: 0; }
-a {
-	text-decoration:none;
-     color: #FFA812;
- }
-a:hover {
-	text-decoration: underline;
-    color: #FDF5E6;
-}
+a { text-decoration:none}
+a:hover {text-decoration: underline}
 a.button {text-decoration: none}
-
-a:visited{
-    color: #FFCC11;
-}
 h1,h2,h3,h4,h5,h6 {margin: 0.5em 0 0.25em 0; display: block; font-family: Helvetica}
         h1 { font-size: 4.00em;}
         h2 { font-size: 3.00em;}
@@ -50,6 +40,17 @@ body {
     background-color:#42C0FB;
 }
 
+a{
+    color: #FFA812;
+}
+
+a:hover{
+    color: #FDF5E6;
+}
+
+a:visited{
+    color: #FFCC11;
+}
     
 
 /** end **/
