@@ -9,30 +9,110 @@
     
     a:visited{
         color: #FFCC11;
+    } 
+    #leftContents {
+        float : left;
+        width : 100%;
+        margin : 0px;
+        height: 100%;
+    }
+    #rightContents {
+        float : right;
+        padding-right : 300px;
+    }
+    .editBox {
+        float : left;
+        width : 100%;
+    }
+    .hideThis {
+        display : none;
     }
 </style>
-<html>
-    <Title> Slugfriends </Title>
-    <div id="top">
-        <br/>       
-    </div>
-    <h3> {{=profile_user.first_name}} {{=profile_user.last_name}}s Profile</h3>
-    <div id="left">   
-    <h4>About Me: </h4>
-<p>{{=profile_user.description}}</p>
+<script>
+var edit1 = 0;
+var edit2 = 0;
+$(function() {
 
+});
+$(document).ready(function(){ 
+   $("#no_table_interest").autocomplete({
+       source: "keys_complete.json",
+       minLength: 1,
+   });
+   $("button").button().click(function( e ) {
+      var id = this.id;
+      if(id === 'button1'){
+         if(edit1 === 0){
+            $('#descrip').addClass('hideThis');
+            $('#descrEdit').removeClass('hideThis');
+            edit1 = 1;
+         } else {
+            $('#descrip').removeClass('hideThis');
+            $('#descrEdit').addClass('hideThis');
+            edit1 = 0;
+         } 
+      } 
+      else if(id === 'button2'){
+         if(edit2 === 0){
+            $('#intrst').addClass('hideThis');
+            $('#interEdit').removeClass('hideThis');
+            edit2 = 1;
+         } else {
+            $('#intrst').removeClass('hideThis');
+            $('#interEdit').addClass('hideThis');
+            edit2 = 0;
+         }   
+      }
+   });
+});
+</script>
+<Title> Slugfriends </Title>
+<div id="top">
+<br/>       
+</div>
+<div id="left">   
+<div id="leftContents">
+<div id="rightContents">
+<img src="{{=URL('download',args=profile_user.photo)}}" height="200" width="200px"/>
+</div>
+<font size="5"> {{=profile_user.first_name}} {{=profile_user.last_name}}&#39;s Profile</font>
+<font size="5">About Me: &nbsp;&nbsp; </font>
+{{if profile_user.id == auth.user_id:}}
+<button id="button1">Edit</button>
+<div id="descrEdit" class="hideThis" >
+{{=form1}}
+</div>
+{{pass}}
+
+<div id="descrip">
+<p>{{=profile_user.description}}</p>
+</div>
+
+
+<font size="5">Your Interests:</font> &nbsp;&nbsp;
+{{if profile_user.id == auth.user_id:}}
+<button id="button2">Edit</button>
+<div id="interEdit" class="hideThis">
+<div class="ui-widget">
+{{=form2}}
+</div>
+</div>
+{{pass}}
+
+<div id="intrst">
 <b>
-Your Interests:
 <ul>
 {{for row in interests:}}
    <li> {{=row.Keywords.keyword}} </li>
 {{pass}}
 </ul>
+</div>
 </b>
+
 
 <h4>Your Groups</h4>
 {{for row in groups:}}
     {{=row.Groups.name}}<br />
 {{pass}}
 </div>
-</html>
+</div>

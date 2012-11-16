@@ -39,7 +39,7 @@ db.define_table('Events',
 db.define_table('Attendees',
     Field('event', db.Events),
     Field('attendee', db.auth_user, default=auth.user_id),
-    Field('administrator', 'boolean'),
+    Field('administrator', 'boolean', default='False'),
     )
    
 db.define_table('Comments',
@@ -53,7 +53,7 @@ db.define_table('Keywords',
     )
 
 db.define_table('User_Interests',
-    Field('user', db.auth_user, default=auth.user_id),
+    Field('user_id', db.auth_user, default=auth.user_id),
     Field('interest', db.Keywords),
     )        
    

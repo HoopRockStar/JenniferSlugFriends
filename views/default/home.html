@@ -11,8 +11,14 @@
         color: #FFCC11;
     }
     
+    h1{
+        color: #FFE303;
+        text-align:center;
+    }
+    body {
+        background-color:#b0c4de;
+    }
 </style>
-<html>
     <Title> Slugfriends </Title>
     <div id="top">
         <br/>       
@@ -26,5 +32,7 @@
    {{for row in groups:}}
       {{=row.Groups.name}}<br />
    {{pass}}
+<br /><br />
+{{=A('Create a Group', _href=URL('createAGroup'))}}
+
     </div>
-</html>
