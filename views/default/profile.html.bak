@@ -82,7 +82,7 @@ $(document).ready(function(){
 <font size="5"> {{=profile_user.first_name}} {{=profile_user.last_name}}&#39;s Profile</font>
 <font size="5">About Me: &nbsp;&nbsp; </font>
 {{if profile_user.id == auth.user_id:}}
-<button id="button1"><span class="button-text">Edit</span></button>
+<button id="button1"><span id="button1-text">Edit</span></button>
 <div id="descrEdit" class="hideThis" >
 {{=form1}}
 </div>
@@ -95,7 +95,7 @@ $(document).ready(function(){
 
 <font size="5">Your Interests:</font> &nbsp;&nbsp;
 {{if profile_user.id == auth.user_id:}}
-<button id="button2"><span class="button-text">Edit</span></button>
+<button id="button2"><span id="button2-text">Edit</span></button>
 <div id="interEdit" class="hideThis">
 <div class="ui-widget">
 {{=form2}}
