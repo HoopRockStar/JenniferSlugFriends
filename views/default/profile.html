@@ -31,12 +31,10 @@
 <script>
 var edit1 = 0;
 var edit2 = 0;
-$(function() {
 
-});
-$(document).ready(function(){ 
+$(document).ready(function(){    
    $("#no_table_interest").autocomplete({
-       source: "keys_complete.json",
+       source: "{{=URL('keys_complete')}}.json",
        minLength: 1,
    });
    $("button").button().click(function( e ) {

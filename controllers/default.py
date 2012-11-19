@@ -55,7 +55,7 @@ def profile():
 
 def keys_complete():
     keys = db(db.Keywords.keyword.startswith(request.vars.term)).select(db.Keywords.keyword).as_list()
-    word_list = [s['interest'] for s in keys]
+    word_list = [s['keyword'] for s in keys]
     import gluon.contrib.simplejson
     return gluon.contrib.simplejson.dumps(word_list) 
 
