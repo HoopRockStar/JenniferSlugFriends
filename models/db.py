@@ -45,9 +45,9 @@ auth = Auth(db)
 crud, service, plugins = Crud(db), Service(), PluginManager()
 
 auth.settings.extra_fields['auth_user']= [
-  Field('username', 'string'),
-  Field('photo', 'upload'),
-  Field('description', 'text'),]
+  Field('username', 'string', requires = IS_NOT_EMPTY(error_message=auth.messages.is_empty)),
+  Field('photo', 'upload', requires = IS_NOT_EMPTY(error_message=auth.messages.is_empty)),
+  Field('description', 'text', requires = IS_NOT_EMPTY(error_message=auth.messages.is_empty)),]
 
 ## create all tables needed by auth if not custom tables
 auth.define_tables(username=False)
