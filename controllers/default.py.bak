@@ -35,9 +35,9 @@ def profile():
       profile_user = db(db.auth_user.id == request.args[0]).select().first()
       db.commit()
   if form2.process(formname='form2').accepted:
-      if db(db.Keywords.keyword==form2.vars.interest):
+      if db(db.Keywords.keyword==form2.vars.interest).select().first():
           rowid = db(db.Keywords.keyword==form2.vars.interest).select().first()
-          if db(db.User_Interests.interest == rowid.id):  
+          if db(db.User_Interests.interest == rowid.id).select().first():  
               response.flash='interest already exists';
           else:
               db.User_Interests.insert(user_id=auth.user_id, interest=rowid.id)  
