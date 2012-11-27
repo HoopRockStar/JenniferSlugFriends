@@ -15,7 +15,7 @@
 {{pass}}
     
 {{if not member:}}
-	<td>{{=A('Join This Group!',_href=URL('joinGroup'))}}</td>
+    <td>{{=A('Join This Group!',_href=URL('joinGroup'))}}</td>
 {{else:}}
     <td>{{=A('View Members', _href=URL('index'))}}</td>
     <td>{{=A('Leave Group', _href=URL('leaveGroup'))}}</td>
