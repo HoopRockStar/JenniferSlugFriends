@@ -5,9 +5,8 @@
 <ul>
 {{for group in groups:}}
 <li>{{=A(group.name, _href=URL('groups', args=[group.id]))}}
+    :<br/>
     description: {{=group.description}}
 </li>
 {{pass}}
 </ul>
-
-<p>{{=A('Home', _href=URL('index'))}}</p>
