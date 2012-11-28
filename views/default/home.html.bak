@@ -1,23 +1,11 @@
 {{extend 'layout.html'}}
-<style>
-    a{
-        color: #FFA812;
-    }
-    a:hover{
-        color: #FDF5E6;
-    }
-    
-    a:visited{
-        color: #FFCC11;
-    }
-    
-</style>
-<html>
     <Title> Slugfriends </Title>
     <div id="top">
         <br/>       
     </div>
     <h1> Slugfriends</h1>
+    <br /><br />
+	{{=A('Create a Group', _href=URL('createAGroup'))}}
     <div id="left">   
     <h3>Hello {{=current_user.first_name}} {{=current_user.last_name}}</h3>
         <h4>Your {{=A('Profile', _href=URL('profile', args=[auth.user_id]))}} </h4>
@@ -26,5 +14,5 @@
    {{for row in groups:}}
       {{=row.Groups.name}}<br />
    {{pass}}
+
     </div>
-</html>
